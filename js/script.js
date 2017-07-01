@@ -1,6 +1,41 @@
-// https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&titles=Stack%20Overflow API for specific quote
+function searchEngine(e) {
+  // Function that handles the search for the query
 
-let firstTime = true;
+  // Checking for ENTER key
+  if (e.originalEvent.type === 'keydown' && (e.keyCode !== 13 || !$('#search-input').val()) ) {
+    return;
+  }
+
+  // Checking for SEARCH button
+  if (e.originalEvent.type === 'click' && !$('#search-input').val()) return;
+
+  // Hidding it
+  $('ul').addClass('hide').html("");
+
+  // Get the val and make the request
+  var query = $('#search-input').val();
+  $.getJSON('https://crossorigin.me/https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&prop=extracts&exintro=&srsearch=' + encodeURI(query), function(json) {
+
+      // Here are the results
+      let results = json.query.search;
+
+      // Creating the list
+      for (var i = 0; i < results.length; i++) {
+        let res = `
+        <li class="collection-item">
+          <h5>${results[i].title}</h5>
+          <p>${results[i].snippet}</p>
+          <a href="https://en.wikipedia.org/wiki/${encodeURI(results[i].title)}" target="_blank">See more</a>
+        </li>`;
+        $('ul').append(res);
+      }
+
+      // Showing it
+      $('ul').removeClass('hide');
+      $('ul').fadeIn('fast');
+      $('#search-input').val("");
+  });
+}
 
 $(document).ready( function () {
   // EZ random page
@@ -14,11 +49,12 @@ $(document).ready( function () {
       $(this).addClass('hide');
       $('#search-menu').removeClass('hide');
       $('#search-menu').fadeIn('fast', function() {
-        $('#search-input').attr('autofocus', 'autofocus');
+        $('#search-input').focus();
       });
     });
   });
 
+  // Go back to the menu
   $('#back').click(function() {
     $('#search-menu').fadeOut('fast', function() {
       $(this).addClass('hide');
@@ -27,31 +63,11 @@ $(document).ready( function () {
         $('#search-input').removeAttr('autofocus').val("");
         $('ul').html("");
         $('ul').addClass('hide');
+        $('#search-input').focusout();
       });
     });
   })
 
-  $('#search-input').on('keydown', function(e) {
-    if (e.keyCode !== 13 ) {
-      return;
-    }
-    if (!$(this).val()) return;
-    $('ul').addClass('hide').html("");
-    var query = $(this).val();
-    $.getJSON('https://crossorigin.me/https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&prop=extracts&exintro=&srsearch=' + encodeURI(query), function(json) {
-        let results = json.query.search;
-        console.log(results);
-        for (var i = 0; i < results.length; i++) {
-          let res = `
-          <li class="collection-item">
-            <h5>${results[i].title}</h5>
-            <p>${results[i].snippet}</p>
-            <a href="https://en.wikipedia.org/wiki/${encodeURI(results[i].title)}" target="_blank">See more</a>
-          </li>`;
-          $('ul').append(res);
-        }
-        $('ul').removeClass('hide');
-        $('ul').fadeIn('fast');
-    });
-  })
+  $('#search-input').on('keydown', searchEngine);
+  $('#search-btn').click(searchEngine);
 })
