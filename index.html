@@ -2,24 +2,65 @@
 <html>
   <head>
     <!--Let browser know website is optimized for mobile-->
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-      
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
-    <div class="section container">
+    <div id="main" class="section container">
       <div class="row">
         <div class="col s12 center">
-          <h1>Wikipedia Viewer</h1>
+          <h1 id="#main-title" >Wikipedia Viewer</h1>
         </div>
       </div>
-      
+      <div id="main" class="row">
+        <div class="col s4 offset-s1">
+          <a id="random" href="#">
+            <img src="images/dice2.png" alt="" class="responsive-img" />
+          </a>
+        </div>
+        <div class="col s4 offset-s2">
+          <a id="search" href="#">
+            <img src="images/lupa.png" alt="" class="responsive-img" />
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s6">
+          <h4 class="center">Random</h4>
+        </div>
+        <div class="col s6">
+          <h4 class="center">Search</h4>
+        </div>
+      </div>
+    </div>
+
+    <div id="search-menu" class="section container hide">
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Enter your query:" id="search-input" type="text" name="search-input">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <ul class="collection hide">
+            
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 center">
+          <a id="back" href="#" class="btn black">Go Back</a>
+        </div>
+      </div>
     </div>
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-    
+    <script type="text/javascript" src="js/script.js"></script>
   </body>
 </html>

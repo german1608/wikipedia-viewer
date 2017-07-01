@@ -1,0 +1,32 @@
+html {
+  background-color: #DAD855;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #fff;
+  box-shadow: 0 1px 0 0 #fff;
+}
+
+.input-field input[type=text] {
+  border-bottom: 1px solid #555;
+  box-shadow: 0 1px 0 0 #555;
+}
+
+.input-field input[type=text]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #555;
+}
+.input-field input[type=text]::-moz-placeholder { /* Firefox 19+ */
+  color: #555;
+}
+.input-field input[type=text]:-ms-input-placeholder { /* IE 10+ */
+  color: #555;
+}
+.input-field input[type=text]:-moz-placeholder { /* Firefox 18- */
+  color: #555;
+}
+
+.searchmatch {
+  font-weight: bold;
+}
