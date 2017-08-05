@@ -14,7 +14,7 @@ function searchEngine(e) {
 
   // Get the val and make the request
   var query = $('#search-input').val();
-  $.getJSON('https://crossorigin.me/https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&prop=extracts&exintro=&srsearch=' + encodeURI(query), function(json) {
+  $.getJSON('https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&prop=extracts&exintro=&origin=*&srsearch=' + encodeURI(query), function(json) {
 
       // Here are the results
       let results = json.query.search;
